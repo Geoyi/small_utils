@@ -47,6 +47,7 @@ def extract_schools2geo(df, thresold, country):
     for pred, geo in new_items:
         if pred["school"] >=float(thresold):
             features.append(Feature(geometry=geo, properties=dict(school=pred["school"])))
+    print(f"Total {len(features)} were detected that thresold higher than {float(thresold)}")
     feature_collection = FeatureCollection(features)
     with open(f'{country}_{thresold}_schools.geojson', 'w') as results:
         json.dump(feature_collection, results)
